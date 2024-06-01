@@ -1,0 +1,21 @@
+{
+  "name": "molstar-gallery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --outfile=./gallery/js/gallery.js --global-name=molstarGallery",
+    "watch": "esbuild src/index.ts --bundle --outfile=./gallery/js/gallery.js --global-name=molstarGallery --watch"
+  },
+  "author": "Mol* Contributors",
+  "contributors": [
+    "David Sehnal <david.sehnal@gmail.com>"
+  ],
+  "license": "MIT",
+  "description": "A helper package for Mol* Example Gallery",
+  "devDependencies": {
+    "esbuild": "0.21.4"
+  },
+  "dependencies": {
+    "molstar": "^4.3.0"
+  }
+}
