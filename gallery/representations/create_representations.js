@@ -1,8 +1,8 @@
-import { StructureSelectionQueries } from "https://esm.sh/molstar/lib/mol-plugin-state/helpers/structure-selection-query";
+const { createRootViewer, StructureSelectionQueries } = molstarGallery
 
 async function init() {
   // plugin initialization logic bundled for usage in CodePen. Returns a PluginContext
-  const plugin = await molstarGallery.createRootViewer();
+  const plugin = await createRootViewer();
 
   // The `builders` namespace contains a set of helper functions to create and manipulate structures, representations, etc.
   // which gets attached to the plugin context as a tree of state objects.
