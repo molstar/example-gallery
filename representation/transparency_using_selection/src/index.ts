@@ -24,8 +24,9 @@ async function init() {
     const query = Queries.generators.chains({
         chainTest: l => StructureProperties.chain.label_asym_id(l.element) == 'A' || StructureProperties.chain.label_asym_id(l.element)== 'B'
     })
-    const res = query(ctx) as StructureSelection.Sequence;
-    // Convert the StructureSelection into a Loci, add a transparency of 1
+    const res = query(ctx);
+    // Convert the StructureSelection into a Loci
+    // Set a transparency of 1 (invisible) on the components using the loci
     setStructureTransparency(plugin, structRef?.components!, 1, async ()=> StructureSelection.toLociWithSourceUnits(res))
 }   
 init();

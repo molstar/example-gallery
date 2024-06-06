@@ -24,6 +24,7 @@ async function init() {
         'as-whole-residues': true
     });
     // Create a new selection from the expression
+    // And use the selection manager to add the SelectionQuery to the current selection
     plugin.managers.structure.selection.fromSelectionQuery('add', StructureSelectionQuery('ligand-and-surroundings-1', expression))
 }
 init();
