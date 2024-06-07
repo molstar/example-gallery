@@ -1,7 +1,7 @@
 {
-    "name": "vanilla-typescript",
+    "name": "molstar-typescript-example",
     "version": "1.0.0",
-    "description": "JavaScript and TypeScript example starter project",
+    "description": "Molstar and TypeScript example starter project",
     "main": "index.html",
     "scripts": {
       "start": "parcel index.html",
@@ -19,6 +19,6 @@
     },
     "keywords": [
       "typescript",
-      "javascript"
+      "molstar"
     ]
   }

@@ -3,17 +3,27 @@ Mol* Example Gallery
 This repository serves as a guide to help developers understand and utilize the Mol* code effectively. This gallery aims to provide clear, concise, and practical examples.
 
 ## Getting Started
-To get started with the Mol* gallery examples, you can try them out in [CodeSandbox](codesandbox.io) or run it locally. 
+To get started with the Mol* gallery examples, you can try them out in [CodeSandbox](codesandbox.io) or run them locally. 
 
 ### CodeSandbox
-Simply set the repository path to the example in your CodeSandbox URL and start testing ([example](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/select_ligand_and_surroundings)). To make your own draft of the example, sign in to CodeSandbox for free.
+![CodeSanbox!](assets/codesandbox_overview.jpg)
+
+From a browser, use one of the links below to open a code example in CodeSandbox. This web-application executes the package scripts in a virtual machine to create the application bundle and serve it online, in a preview tab.
+
+The code example can be downloaded as a zip file and executed locally (cf.infra).
+![Download zip file!](assets/codesandbox_download.png)
+
+You can also sign-in to CodeSandbox and edit the code online using a VS-code interface with code hints and an automatic preview of the changes. Your changes can be saved to your own account.
 
 ### Locally
-Navigate to an example directory (ex: `./default/`) and run
+From the terminal, navigate to the root of an example directory (ex: `./default/`). This directory must contain a `package.json` file. Execute the following commands
 ```sh
+# install dependencies
 npm install
+# run the bundler and start the local development server.
 npm run start
 ```
+Once the development server has started and return a local url for the preview.
 
 ## Examples and SandBoxes
 - Selections
