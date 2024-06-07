@@ -1,5 +1,7 @@
 node_modules/
 debug.log
 npm-debug.log
-
+.cache
+dist
 .DS_Store
+package-lock.json
