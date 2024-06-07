@@ -3,7 +3,7 @@ Mol* Example Gallery
 This repository serves as a guide to help developers understand and utilize the Mol* code effectively. This gallery aims to provide clear, concise, and practical examples.
 
 ## Getting Started
-To get started with the Mol* gallery examples, you can try them out in [CodeSandbox](codesandbox.io) or run them locally. 
+To get started with the Mol* gallery examples, you can try them out in [CodeSandbox](codesandbox.io), run them locally, or use a prebuilt example. 
 
 ### CodeSandbox
 ![CodeSanbox!](assets/codesandbox_overview.jpg)
@@ -24,6 +24,21 @@ npm install
 npm run start
 ```
 Once the development server has started and return a local url for the preview.
+
+### Prebuilt
+- See `prebuilt_examples/gallery/example.html` for basic usage
+- After making changes to the `prebuilt_examples/src` folder, rebuild the supporting library using
+```sh
+# install dependencies
+npm install
+# build the gallery.js file
+npm run build
+# or watch for development
+npm run watch
+```
+- For usage in CodePen, use https://www.jsdelivr.com for `prebuilt_examples/gallery/js/index.js` with `Add External Script`:
+  - https://cdn.jsdelivr.net/gh/molstar/example-gallery/prebuilt_examples/gallery/js/gallery.js
+  - [Minimal example](https://codepen.io/dsehnal/pen/rNgyGZm)
 
 ## Examples and SandBoxes
 - Selections
