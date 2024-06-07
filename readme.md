@@ -26,8 +26,10 @@ npm run start
 Once the development server has started and return a local url for the preview.
 
 ### Prebuilt
+These examples rely on a prebuilt bundle js file that exports the functions required to make the example work. This technique enables standalone HTML pages that can
+be run directly from the local file system. The js script content can also be used directly in online editors such as CodePen that can not build bundles.
 - See `prebuilt_examples/gallery/example.html` for basic usage
-- After making changes to the `prebuilt_examples/src` folder, rebuild the supporting library using
+- To expose other functions from Mol*, make changes to the `prebuilt_examples/src` folder, and rebuild the supporting library using
 ```sh
 # install dependencies
 npm install
@@ -46,3 +48,9 @@ npm run watch
 - Representation
   - [Set transparency on selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/transparency_using_selection)
 - [Default](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/default)
+
+## Prebuilt Examples and CodePens
+- Minimal example
+  - [Minimal example](https://codepen.io/dsehnal/pen/rNgyGZm)
+- Representation
+  - [Create representations](https://codepen.io/papillot/pen/NWVjLWj?editors=0010)
