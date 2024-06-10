@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Mol* Gallery</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body style="font-family: sans-serif; height: 100%; width: 100%; margin: 0;">
+    <label>Save Snapshot (with Assets): </label><button id="saveAssets">Download</button>
+    <br>
+    <label>Load Snapshot (with Assets): </label><input type='file' id='loadAssets' accept=".molx"/>
+    <br>
+    <label>Save Snapshot (without Assets): </label><button id="saveNoAssets">Download</button>
+    <br>
+    <label>Load Snapshot (without Assets): </label><input type='file' id='loadNoAssets' accept=".molj"/>
+    <!-- <button onClick={handleStateButtonClick}>Load State</button> -->
+    <div id="app" style="height: 100%;width: 100%;">
+      <canvas id="canvas" style="height: 100%;width: 100%;"></canvas>
+    </div>
+
+    <script src="src/index.ts"></script>
+  </body>
+</html>
