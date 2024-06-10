@@ -47,10 +47,13 @@ async function init() {
             // Create a Loci using the unit and the index of the atom
             const indices = OrderedSet.ofSingleton(i as StructureElement.UnitIndex);
             const loci = StructureElement.Loci(struct, [{unit, indices: indices}])
+            // Create a location to retrieve the atom's compID (residue name)
+            const location = StructureElement.Location.create(struct, unit, unit.elements[i]);
+            const resName = +StructureProperties.atom.auth_comp_id(location)
             // Add label to the loci
             plugin.managers.structure.measurement.addLabel(loci, {labelParams: {
                 // Set label parameters, in this case the text and size
-                customText: 'Alpha Carbon '+i,
+                customText: 'Alpha Carbon '+resName,
                 textSize: 1
             }})
         }
