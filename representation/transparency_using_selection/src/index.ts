@@ -31,7 +31,7 @@ async function init() {
     // Create a selection for chains A and B
 
         // A query defines the logic to select elements based on a predicate.
-        // The predicate is executed from a generator which updates the current element (here, an atom)
+        // The predicate is executed from a generator which updates the current element (here, a chain)
         // in the query context, at each iteration. The predicate returns true if the element should be selected.
         const query = Queries.generators.chains({
             chainTest: ctx => {
