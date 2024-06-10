@@ -30,15 +30,16 @@ async function init() {
     // generated from the default preset.
     const structRef = plugin.managers.structure.hierarchy.findStructure(struct)!;
 
-    // Query all ligands using prebuilt query
+    // Select all ligands using prebuilt query
     const ctx = new QueryContext(struct)
-    const ligandExp = StructureSelectionQueries.ligand.query(ctx);
+    const ligandSelection = StructureSelectionQueries.ligand.query(ctx);
 
     // Convert the StructureSelection into a Loci
-    const loci = StructureSelection.toLociWithSourceUnits(ligandExp);
+    const loci = StructureSelection.toLociWithSourceUnits(ligandSelection);
 
     const color = Color(0xFF0000); // 0xFF0000 is RGB for red
-    // The helper takes care of updating the plugin state for each component based on the loci
+    // The helper takes care of updating the plugin state by iterating through
+    // each representation for each component based on the loci
     setStructureOverpaint(plugin, structRef.components, color, async (s) => loci)
 }
 init();
