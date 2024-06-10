@@ -45,6 +45,8 @@ npm run watch
 ## Examples and SandBoxes
 - Selections
   - [Ligand with surrounding](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/select_ligand_and_surroundings)
+  - [Add label to whole selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/add_label_to_selection_whole)
+  - [Add labels to selection atoms](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/add_labels_to_selection_atoms)
 - Representation
   - [Create representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/create_representations)
   - [Set transparency on selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/transparency_using_selection)
