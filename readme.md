@@ -48,6 +48,8 @@ npm run watch
 - Representation
   - [Create representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/create_representations)
   - [Set transparency on selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/transparency_using_selection)
+- Camera
+  - [Move camera](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/camera/move_camera)
 - [Default](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/default)
 
 ## Prebuilt Examples and CodePens
