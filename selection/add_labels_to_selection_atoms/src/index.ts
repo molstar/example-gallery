@@ -29,9 +29,9 @@ async function init() {
         // The predicate is executed from a generator which updates the current element (here, a chain and an atom)
         // in the query context, at each iteration. The predicate returns true if the element should be selected.
         const query = Queries.generators.residues({
-            atomTest: ctx=> StructureProperties.atom.auth_atom_id(ctx.element) === 'CA',
-            chainTest: ctx=> StructureProperties.chain.label_asym_id(ctx.element) === 'A'
-        })
+            atomTest: ctx => StructureProperties.atom.auth_atom_id(ctx.element) === 'CA',
+            chainTest: ctx => StructureProperties.chain.label_asym_id(ctx.element) === 'A'
+        });
 
         const ctx = new QueryContext(struct);
         const selection = query(ctx);
@@ -43,19 +43,19 @@ async function init() {
     
     // Now, we will iterate over each Unit and its elements in the selection
     structure.units.forEach(unit => {
-        for (let i=0; i<unit.elements.length; i++) { // Iterate over each atom in the unit (each alpha carbon)
+        for (let i = 0; i < unit.elements.length; i++) { // Iterate over each atom in the unit (each alpha carbon)
             // Create a Loci using the unit and the index of the atom
             const indices = OrderedSet.ofSingleton(i as StructureElement.UnitIndex);
-            const loci = StructureElement.Loci(struct, [{unit, indices: indices}])
+            const loci = StructureElement.Loci(struct, [{unit, indices: indices}]);
             // Create a location to retrieve the atom's compID (residue name)
             const location = StructureElement.Location.create(struct, unit, unit.elements[i]);
-            const resName = +StructureProperties.atom.auth_comp_id(location)
+            const resName = StructureProperties.atom.auth_comp_id(location);
             // Add label to the loci
             plugin.managers.structure.measurement.addLabel(loci, {labelParams: {
                 // Set label parameters, in this case the text and size
                 customText: 'Alpha Carbon '+resName,
                 textSize: 1
-            }})
+            }});
         }
     })
 }
