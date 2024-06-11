@@ -1,5 +1,5 @@
 import { createRootViewer } from "./common/init";
-import { StateBuilder, StateSelection, StateTransform } from "molstar/lib/mol-state";
+import { StateSelection, StateTransform } from "molstar/lib/mol-state";
 import { createStructureRepresentationParams } from "molstar/lib/mol-plugin-state/helpers/structure-representation-params";
 
 const byres = document.getElementById("byres")!;
@@ -38,18 +38,6 @@ async function init() {
     { tag: "my-cartoon" } // tag is optional. It is used in some examples to retrieve the representation from the state tree.
   );
 
-
-  // Color by residue name
-  // In this example, the Representation StateObject is used directly. 
-  // Internally, the `update` function acts on a new State tree and returns a helper StateBuilder object
-  // which may receive additional changes.
-  // The `commit` function is used to apply the changes to the current plugin state.
-  byres.addEventListener("click", () => {
-    const newParams = createStructureRepresentationParams(plugin, structure, { color: "residue-name" });
-    const update = representationSO.update(newParams) as StateBuilder.Root
-    update.commit()
-  });
-
   // Color by chain
   // In this example the `ref` string for the representation is found back from the state tree using
   // the tag that was set at creation time.
@@ -58,8 +46,10 @@ async function init() {
     const reprRef = StateSelection.findTagInSubtree(plugin.state.data.tree, StateTransform.RootRef, "my-cartoon");
     
     if (!reprRef) throw new Error("Representation not found");
-    
-    plugin.build().to(reprRef).update(newParams).commit()
+
+    const builder = plugin.build();  // Create a new StateBuilder 
+    builder.to(reprRef).update(newParams) // Update the new state tree where the state object reference is
+    builder.commit()  // Apply all the changes to the current plugin state.
   });
 
   // Color by position
@@ -70,11 +60,26 @@ async function init() {
     const newParams = createStructureRepresentationParams(plugin, structureSO.data, { color: "sequence-id" });
     const repr = plugin.state.data.select(StateSelection.Generators.root.subtree().withTag("my-cartoon"));
     
-    const update = plugin.build();  // Start a new state tree
+    const builder = plugin.build();  // Create a new state builder
     for (const r of repr) {
-      update.to(r).update(newParams); // update the new state tree
+      builder.to(r).update(newParams); // Update the new state tree where each representation is found
     }
-    update.commit();  // apply all the changes to the current plugin state.
+    builder.commit();  // Apply all the changes to the current plugin state.
+  });
+
+
+  // Color by residue name
+  // In this example, the Representation StateObjectSelector is used directly as the target of the update.
+   byres.addEventListener("click", () => {
+    const newParams = createStructureRepresentationParams(plugin, structure, { color: "residue-name" });
+
+    const builder = plugin.build(); // Create a new state builder
+    builder.to(representationSO).update(newParams); // Update the representation in the new state tree
+    builder.commit(); // Apply all the changes to the current plugin state.
+
+    // Because a StateObject selector has an update method which by default returns a new StateBuilder,
+    // the same statement can be written as a one-liner: 
+    // `representationSO.update(newParams).commit();`
   });
 
 }
