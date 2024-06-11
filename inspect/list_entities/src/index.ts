@@ -1,11 +1,8 @@
-import { Queries, QueryContext, StructureElement, StructureProperties, StructureQuery, StructureSelection } from "molstar/lib/mol-model/structure";
+import { Queries, QueryContext, StructureProperties, StructureSelection } from "molstar/lib/mol-model/structure";
 import { createRootViewer } from "./common/init";
 import { StructureSelectionQueries, StructureSelectionQuery } from "molstar/lib/mol-plugin-state/helpers/structure-selection-query";
 import { MolScriptBuilder as MS } from 'molstar/lib/mol-script/language/builder';
 import { Location } from "molstar/lib/mol-model/structure/structure/element/location";
-import { StructurePointsParams } from "molstar/lib/mol-repr/structure/params";
-import { Loci } from "molstar/lib/mol-model/loci";
-import { OrderedSet } from "molstar/lib/mol-data/int";
 
 
 async function init() {
@@ -33,7 +30,7 @@ async function init() {
     // Limits the queries to only look at the structure
     const ctx = new QueryContext(struct)
 
-    
+
     // ==== Number of Waters ====
     // Created a query to select all residues that are water
     // but only select 1 atom per water (ensuring a Singleton selection)
