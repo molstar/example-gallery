@@ -50,6 +50,9 @@ npm run watch
   - [Set transparency on selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/transparency_using_selection)
 - Coloring
   - [Color a selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/coloring/color_a_selection)
+- IO
+  - [Load file](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/io/load_file)
+  - [Save session](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/io/save_session)
 - [Default](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/default)
 
 ## Prebuilt Examples and CodePens
