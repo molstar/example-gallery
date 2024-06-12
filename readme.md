@@ -45,6 +45,7 @@ npm run watch
 ## Examples and SandBoxes
 - Selections
   - [Ligand with surrounding](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/select_ligand_and_surroundings)
+  - [Language Selections](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/select_from_language)
 - Representation
   - [Create representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/create_representations)
   - [Delete representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/delete_representations)
