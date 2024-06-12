@@ -49,6 +49,8 @@ npm run watch
   - [Create representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/create_representations)
   - [Update representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/update_representations)
   - [Set transparency on selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/transparency_using_selection)
+- Camera
+  - [Move camera](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/camera/move_camera)
 - Coloring
   - [Color a selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/coloring/color_a_selection)
 - [Default](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/default)
