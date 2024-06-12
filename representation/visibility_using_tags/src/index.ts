@@ -28,12 +28,12 @@ async function init() {
 init();
 
 function toggleWater(plugin: PluginContext, hide: boolean){
-    // Find all representations with the tag 'structure-component-static-water'
-    const representations = StateSelection.findWithAllTags(
+    // Find all structure components with the tag 'structure-component-static-water'
+    const structComponents = StateSelection.findWithAllTags(
         plugin.state.data.tree,                         // The state tree
         plugin.state.data.tree.root.ref,                // The root ref of the state tree
         new Set(['structure-component-static-water'])   // The tag to search for
     )
-    // Set the visibility of each representation and any StateObjects in its subtree
-    representations.forEach(rep => setSubtreeVisibility(plugin.state.data, rep.ref, hide))
+    // Set the visibility of each structure component and any StateObjects in its subtree (including representations)
+    structComponents.forEach(structComponent => setSubtreeVisibility(plugin.state.data, structComponent.ref, hide))
 }
