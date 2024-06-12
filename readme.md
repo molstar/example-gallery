@@ -55,6 +55,7 @@ npm run watch
   - [Move camera](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/camera/move_camera)
 - Coloring
   - [Color a selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/coloring/color_a_selection)
+  - [Custom color provider](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/coloring/custom_color_provider)
 - [Default](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/default)
 
 ## Prebuilt Examples and CodePens
