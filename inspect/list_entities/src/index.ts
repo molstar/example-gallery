@@ -35,10 +35,9 @@ async function init() {
     // Created a query to select all residues that are water
     // but only select 1 atom per water (ensuring a Singleton selection)
     const waterQuery = Queries.generators.atoms({
-        'entityTest': ctx => StructureProperties.entity.type(ctx.element) === 'water',
-        'atomTest': ctx => StructureProperties.atom.type_symbol(ctx.element) === 'O'
+        'entityTest': ctx => StructureProperties.entity.type(ctx.element) === 'water'
     })
-    // Can cast as a Singleton selection since we are only selecting 1 atom per water
+    // Since we used Queries.generators.atoms, our selection will by grouped by Atom and is therefore Singletons
     const waterSelection = waterQuery(ctx) as StructureSelection.Singletons;
     const numWaters = waterSelection.structure.atomicResidueCount;
 
@@ -55,21 +54,26 @@ async function init() {
     const covLigSelection = covLigQuery(ctx);
     // Assume ligands in structure have >1 atoms.
     // Therefore, the StructureSelection must be a Sequence
-    const covLigStructures = (covLigSelection as StructureSelection.Sequence).structures;
+    // If the selection is empty, set the ligand structures to an empty array
+    const covLigStructures = StructureSelection.isEmpty(covLigSelection) ? [] : (covLigSelection as StructureSelection.Sequence).structures;
     // Retrieve each ligand name and residue code
     const covLigNames: string[] = [];
     const covLigRes: string[] = [];
-    covLigStructures.forEach(s => s.units.map(u => {
-        // Create a location for the first element of the ligand
-        // to retrieve structure properties
-        const location = Location.create(s, u, u.elements[0])
-        // Return the ligand name property for the ligand
-        const name = StructureProperties.entity.pdbx_description(location).join('|')
-        covLigNames.push(name);
-        // Return the residue code for the ligand
-        const res = StructureProperties.atom.label_comp_id(location)
-        covLigRes.push(res);
-    }))
+    const auxCovLigLocation = Location.create();  // Create a Location object to retrieve properties
+    covLigStructures.forEach(s => {
+        auxCovLigLocation.structure = s;  // Set the structure for the location
+        s.units.map(u => {
+            // Set the Location to the first element of the ligand
+            auxCovLigLocation.unit = u;
+            auxCovLigLocation.element = u.elements[0];
+            // Use the Location to query the ligand name property of the ligand
+            const name = StructureProperties.entity.pdbx_description(auxCovLigLocation).join('|')
+            covLigNames.push(name);
+            s// Use the Location to query the reidue code for the ligand
+            const res = StructureProperties.atom.label_comp_id(auxCovLigLocation)
+            covLigRes.push(res);
+        })
+    })
     
 
     // ==== Number of AltLoc positions ====
@@ -77,26 +81,29 @@ async function init() {
         // Any atom with a non '' alt_id
         'atomTest': ctx => !!StructureProperties.atom.label_alt_id(ctx.element),
     });
-    // Can only select 1 atom at a time, must be a Singleton
+    // Since we used Queries.generators.atoms, our selection will by grouped by Atom and is therefore Singletons
     const altLocSelection = altLocQuery(ctx) as StructureSelection.Singletons;
     const numAltLocs = altLocSelection.structure.elementCount;
 
     
     // ==== Polymer ASYM Unit name and chain ====
     const polymerSelection = StructureSelectionQueries.polymer.query(ctx)
-    // Assume more than 1 atom in the polymer entity
+    // Polymer query groups selected atoms by entity. Assume it creates a Sequence StructureSelection
     const polymerStructues = (polymerSelection as StructureSelection.Sequence).structures;
     // Iterate over each polymer unit in each structure and get the name and chain
     const namePolymers: string[] = [];
     const chainPolymers: string[] = [];
+    const auxPolymerLocation = Location.create();  // Create a Location object to retrieve properties
     polymerStructues.forEach(s => {
+        auxPolymerLocation.structure = s;   // Set the structure for the location
         s.units.map(u => {
-            // Create a location for the polymer unit to retrieve structure properties
-            const location = Location.create(struct, u, u.elements[0])
-            // Retrieve the polymer name and chain
-            const name = StructureProperties.entity.pdbx_description(location).join('|')
+            // Set the Location to the first element of the polymer
+            auxPolymerLocation.unit = u;
+            auxPolymerLocation.element = u.elements[0];
+            // Use the Location to query the polymer name and chain
+            const name = StructureProperties.entity.pdbx_description(auxPolymerLocation).join('|')
             namePolymers.push(name);
-            const chain = StructureProperties.chain.auth_asym_id(location);
+            const chain = StructureProperties.chain.auth_asym_id(auxPolymerLocation);
             chainPolymers.push(chain);
         })
     })
