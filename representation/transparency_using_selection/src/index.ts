@@ -6,12 +6,12 @@ async function init() {
     // Create viewer
     const plugin = await createRootViewer();
     
-    // Download PDB
+    // Download mmCIF
     const fileData = await plugin.builders.data.download(
         { url: "https://models.rcsb.org/4hhb.bcif", isBinary: true }
     );
 
-    // Load PDB and create representation
+    // Load mmCIF and create representation
     const trajectory = await plugin.builders.structure.parseTrajectory(fileData, "mmcif");
     const presetStateObjects = await plugin.builders.structure.hierarchy.applyPreset(trajectory, "default");
 

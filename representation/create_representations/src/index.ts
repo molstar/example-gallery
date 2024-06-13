@@ -2,7 +2,7 @@ import { StructureSelectionQueries } from "molstar/lib/mol-plugin-state/helpers/
 import { createRootViewer } from "./common/init";
 
 async function init() {
-    // plugin initialization logic bundled for usage in CodePen. Returns a PluginContext
+  // Create Viewer. Returns a PluginContext
   const plugin = await createRootViewer();
 
   // The `builders` namespace contains a set of helper functions to create and manipulate structures, representations, etc.

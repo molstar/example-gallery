@@ -47,11 +47,19 @@ npm run watch
   - [Ligand with surrounding](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/selection/select_ligand_and_surroundings)
 - Representation
   - [Create representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/create_representations)
+  - [Delete representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/delete_representations)
+  - [Update representations](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/update_representations)
   - [Set transparency on selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/transparency_using_selection)
+  - [Set visibility using tags](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/representation/visibility_using_tags)
+- Camera
+  - [Move camera](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/camera/move_camera)
 - Coloring
   - [Color a selection](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/coloring/color_a_selection)
 - Inspect
   - [List entities](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/inspect/list_entities)
+- IO
+  - [Load file](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/io/load_file)
+  - [Save session](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/io/save_session)
 - [Default](https://codesandbox.io/p/sandbox/github/molstar/example-gallery/master/default)
 
 ## Prebuilt Examples and CodePens
