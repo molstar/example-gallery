@@ -6,6 +6,8 @@ import { ParamDefinition as PD } from "molstar/lib/mol-util/param-definition";
 import { ColorTheme } from "molstar/lib/mol-theme/color";
 import { ColorNames } from 'molstar/lib/mol-util/color/names';
 import { MolScriptBuilder as MS } from 'molstar/lib/mol-script/language/builder';
+import { BallAndStickRepresentationProvider } from 'molstar/lib/mol-repr/structure/representation/ball-and-stick';
+
 
 async function init() {
     // Create viewer
@@ -47,29 +49,30 @@ async function init() {
     }
 
     // Add the custom color theme to the plugin's color theme registry (only needs to be done once)
-    plugin.representation.structure.themes.colorThemeRegistry.add(BallAndStickAltLocColorThemeProvider);
+    plugin.representation.structure.themes.colorThemeRegistry.add(CustomAltLocColorThemeProvider);
 
     // Add a ball-and-stick representation to the component we created
     // Use our custom color theme to color the atoms in our representation
+    // NOTE, we can also pass in the provider names instead of the providers themselves
     await plugin.builders.structure.representation.addRepresentation(
         component.cell,
         {
-            type: "ball-and-stick",
-            color: BallAndStickAltLocColorThemeProvider.name as any // Need to cast as any because theme was added at runtime
+            type: BallAndStickRepresentationProvider,
+            color: CustomAltLocColorThemeProvider
         },
     );
 }
 init();
 
 // Create our custom color theme provider
-export const BallAndStickAltLocColorThemeProvider: ColorTheme.Provider<{}, 'ball-and-stick-alt-loc'> = {
-    name: 'ball-and-stick-alt-loc',                             // Name of the color theme to use in representation params
-    label: 'Ball and stick that colors based on alt loc',       // Label for the color theme
-    category: ColorTheme.Category.Atom,                         // Category for use in the UI
-    factory: CustomColorTheme,                                  // Factory function with logic to decide color
-    getParams: () => ({}),                                      // No parameters needed for this theme
-    defaultValues: { },                                         // No default values for this theme
-    isApplicable: (ctx: ThemeDataContext) => true,              // We can make this always applicable to any structure
+export const CustomAltLocColorThemeProvider: ColorTheme.Provider<{}, 'mycustom-alt-loc'> = {
+    name: 'mycustom-alt-loc',                       // Name of the color theme to use in representation params
+    label: 'Custom color theme based on alt loc',   // Label for the color theme
+    category: ColorTheme.Category.Atom,             // Category for use in the UI
+    factory: CustomColorTheme,                      // Factory function with logic to decide color
+    getParams: () => ({}),                          // No parameters needed for this theme
+    defaultValues: { },                             // No default values for this theme
+    isApplicable: (ctx: ThemeDataContext) => true,  // We can make this always applicable to any structure
 };
 
 export function CustomColorTheme(
