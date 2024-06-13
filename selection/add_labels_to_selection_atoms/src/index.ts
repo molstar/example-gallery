@@ -26,19 +26,24 @@ async function init() {
     // Create a selection for each alpha carbon
 
         // A query defines the logic to select elements based on a predicate.
-        // The predicate is executed from a generator which updates the current element (here, a chain and an atom)
-        // in the query context, at each iteration. The predicate returns true if the element should be selected.
+        // The predicate is executed from a generator that iterates over the
+        // structure hierarchy (chains, then residues, then atoms).
+        // At each iteration, the query context that is passed, is updated.
+        // The chainTest predicate is executed once per chain. The element property
+        // represents the atom at the start of the current chain.
+        // The atomTest predicate is executed for each atom in the structure that passes the chainTest.
+        // If the both the predicate returns true, the atom is added to the selection.
         const query = Queries.generators.residues({
-            atomTest: ctx => StructureProperties.atom.auth_atom_id(ctx.element) === 'CA',
-            chainTest: ctx => StructureProperties.chain.label_asym_id(ctx.element) === 'A'
+            chainTest: ctx => StructureProperties.chain.label_asym_id(ctx.element) === 'A',
+            atomTest: ctx => StructureProperties.atom.auth_atom_id(ctx.element) === 'CA'
         });
 
         const ctx = new QueryContext(struct);
         const selection = query(ctx);
     
-    // A StructureSelection is a Singleton if each iteration only adds a single element (atom)
+    // A StructureSelection is made of Singletons if each iteration only adds a single element (atom)
     // A StructureSelection is a Sequence if any iteration adds multiple elements (atoms)
-    // Since we iterated over residues and only selected 1 atom per residue, the selection is a Singleton.
+    // Since we iterated over residues and only selected 1 atom per residue, the selection is made of Singletons.
     const structure = (selection as StructureSelection.Singletons).structure;
     
     // Now, we will iterate over each Unit and its elements in the selection
