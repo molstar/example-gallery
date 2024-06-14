@@ -31,8 +31,12 @@ async function init() {
     // Create a selection for chains A and B
 
         // A query defines the logic to select elements based on a predicate.
-        // The predicate is executed from a generator which updates the current element (here, an atom)
-        // in the query context, at each iteration. The predicate returns true if the element should be selected.
+        // The predicate is executed from a generator that iterates over the
+        // structure hierarchy (chains, then residues, then atoms).
+        // At each iteration, the query context that is passed, is updated.
+        // The chainTest predicate is executed once per chain. The element property
+        // represents the atom at the start of the current chain.
+        // If the predicate returns true, the entire chain segment is added to the selection.
         const query = Queries.generators.chains({
             chainTest: ctx => {
                 const chainName = StructureProperties.chain.label_asym_id(ctx.element);
